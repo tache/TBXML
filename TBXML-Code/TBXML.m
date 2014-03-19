@@ -72,14 +72,6 @@
 	return [[TBXML alloc] initWithXMLFile:aXMLFile error:error];
 }
 
-+ (id)newTBXMLWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension {
-	return [[TBXML alloc] initWithXMLFile:aXMLFile fileExtension:aFileExtension];
-}
-
-+ (id)newTBXMLWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension error:(NSError *__autoreleasing *)error {
-	return [[TBXML alloc] initWithXMLFile:aXMLFile fileExtension:aFileExtension error:error];
-}
-
 - (id)init {
 	self = [super init];
 	if (self != nil) {
@@ -151,35 +143,14 @@
 }
 
 - (id)initWithXMLFile:(NSString*)aXMLFile error:(NSError **)error {
-    NSString * filename = [aXMLFile stringByDeletingPathExtension];
-    NSString * extension = [aXMLFile pathExtension];
-    
-    self = [self initWithXMLFile:filename fileExtension:extension error:error];
-	if (self != nil) {
-        
-	}
-	return self;
-}
-
-- (id)initWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension {
-    NSError *error = nil;
-    return [self initWithXMLFile:aXMLFile fileExtension:aFileExtension error:&error];
-}
-
-- (id)initWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension error:(NSError **)error {
 	self = [self init];
 	if (self != nil) {
         
         NSData * data;
-        
-        // Get the bundle that this class resides in. This allows to load resources from the app bundle when running unit tests.
-        NSString * bundlePath = [[NSBundle bundleForClass:[self class]] pathForResource:aXMLFile ofType:aFileExtension];
 
-        if (!bundlePath) {
-            if (error) {
-                NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[aXMLFile stringByAppendingPathExtension:aFileExtension], NSFilePathErrorKey, nil];
-                *error = [TBXML errorWithCode:D_TBXML_FILE_NOT_FOUND_IN_BUNDLE userInfo:userInfo];
-            }
+        if (![[NSFileManager defaultManager] fileExistsAtPath:aXMLFile]) {
+            NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:aXMLFile, NSFilePathErrorKey, nil];
+            *error = [TBXML errorWithCode:D_TBXML_FILE_NOT_FOUND userInfo:userInfo];
         } else {
             SEL dataWithUncompressedContentsOfFile = NSSelectorFromString(@"dataWithUncompressedContentsOfFile:");
             
@@ -188,11 +159,11 @@
                 
                 #pragma clang diagnostic push
                 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                data = [[NSData class] performSelector:dataWithUncompressedContentsOfFile withObject:bundlePath];
+                data = [[NSData class] performSelector:dataWithUncompressedContentsOfFile withObject:aXMLFile];
                 #pragma clang diagnostic pop   
 
             } else {
-                data = [NSData dataWithContentsOfFile:bundlePath];
+                data = [NSData dataWithContentsOfFile:aXMLFile];
             }
             
             // decode data
@@ -544,7 +515,7 @@
         case D_TBXML_DATA_NIL:                  codeText = @"Data is nil";                          break;
         case D_TBXML_DECODE_FAILURE:            codeText = @"Decode failure";                       break;
         case D_TBXML_MEMORY_ALLOC_FAILURE:      codeText = @"Unable to allocate memory";            break;
-        case D_TBXML_FILE_NOT_FOUND_IN_BUNDLE:  codeText = @"File not found in bundle";             break;
+        case D_TBXML_FILE_NOT_FOUND:  codeText = @"File not found in bundle";             break;
             
         case D_TBXML_ELEMENT_IS_NIL:            codeText = @"Element is nil";                       break;
         case D_TBXML_ELEMENT_NAME_IS_NIL:       codeText = @"Element name is nil";                  break;

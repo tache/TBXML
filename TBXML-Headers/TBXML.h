@@ -39,7 +39,7 @@ enum TBXMLErrorCodes {
     D_TBXML_DATA_NIL,
     D_TBXML_DECODE_FAILURE,
     D_TBXML_MEMORY_ALLOC_FAILURE,
-    D_TBXML_FILE_NOT_FOUND_IN_BUNDLE,
+    D_TBXML_FILE_NOT_FOUND,
     
     D_TBXML_ELEMENT_IS_NIL,
     D_TBXML_ELEMENT_NAME_IS_NIL,
@@ -151,24 +151,19 @@ typedef void (^TBXMLIterateAttributeBlock)(TBXMLAttribute *attribute, NSString *
 + (id)newTBXMLWithXMLString:(NSString*)aXMLString error:(NSError **)error;
 + (id)newTBXMLWithXMLData:(NSData*)aData error:(NSError **)error;
 + (id)newTBXMLWithXMLFile:(NSString*)aXMLFile error:(NSError **)error;
-+ (id)newTBXMLWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension error:(NSError **)error;
 
 + (id)newTBXMLWithXMLString:(NSString*)aXMLString __attribute__((deprecated));
 + (id)newTBXMLWithXMLData:(NSData*)aData __attribute__((deprecated));
 + (id)newTBXMLWithXMLFile:(NSString*)aXMLFile __attribute__((deprecated));
-+ (id)newTBXMLWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension __attribute__((deprecated));
 
 
 - (id)initWithXMLString:(NSString*)aXMLString error:(NSError **)error;
 - (id)initWithXMLData:(NSData*)aData error:(NSError **)error;
 - (id)initWithXMLFile:(NSString*)aXMLFile error:(NSError **)error;
-- (id)initWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension error:(NSError **)error;
 
 - (id)initWithXMLString:(NSString*)aXMLString __attribute__((deprecated));
 - (id)initWithXMLData:(NSData*)aData __attribute__((deprecated));
 - (id)initWithXMLFile:(NSString*)aXMLFile __attribute__((deprecated));
-- (id)initWithXMLFile:(NSString*)aXMLFile fileExtension:(NSString*)aFileExtension __attribute__((deprecated));
-
 
 - (int) decodeData:(NSData*)data;
 - (int) decodeData:(NSData*)data withError:(NSError **)error;
