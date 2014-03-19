@@ -50,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01F893E018D9BE7C0052AD7B /* TBXML-Shared-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML-Shared-Prefix.pch"; sourceTree = "<group>"; };
 		8290352514D9F5B200ACF7E4 /* libTBXML-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTBXML-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8290352614D9F5B200ACF7E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8290353314D9F5B200ACF7E4 /* TBXML-iOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TBXML-iOSTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +121,7 @@
 			children = (
 				8290355514D9F85C00ACF7E4 /* TBXML-iOS-Prefix.pch */,
 				8290355614D9F85C00ACF7E4 /* TBXML-Prefix.pch */,
+				01F893E018D9BE7C0052AD7B /* TBXML-Shared-Prefix.pch */,
 			);
 			path = "TBXML-Support";
 			sourceTree = "<group>";
