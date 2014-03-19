@@ -1,3 +1,7 @@
+### Fork Information
+
+This is a fork of the original (now stale) TBXML project.  I have fixed all compiler warnings and errors, and fixed the issue where it would only load a file from the bundle.
+
 ### What is TBXML
 
 TBXML is a light-weight XML document parser written in Objective-C designed for use on Apple iPad, iPhone & iPod Touch devices (also Mac OSX compatible). TBXML aims to provide the fastest possible XML parsing whilst utilising the fewest resources. This requirement for absolute efficiency is achieved at the expense of XML validation and modification. It is not possible to modify and generate valid XML from a TBXML object and no validation is performed whatsoever whilst importing and parsing an XML document.
