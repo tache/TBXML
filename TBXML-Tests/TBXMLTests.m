@@ -30,7 +30,7 @@
     NSError *error;
     [TBXML newTBXMLWithXMLFile:@"some-file-that-doesnt-exist.xml" error:&error];
     
-    STAssertTrue([error code] == D_TBXML_FILE_NOT_FOUND_IN_BUNDLE, @"Incorrect Error Returned %@ %@", [error localizedDescription], [error userInfo]);
+    STAssertTrue([error code] == D_TBXML_FILE_NOT_FOUND, @"Incorrect Error Returned %@ %@", [error localizedDescription], [error userInfo]);
 }
 
 - (void)testLoadXMLResource
