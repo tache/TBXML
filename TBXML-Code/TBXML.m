@@ -150,7 +150,8 @@
 
         if (![[NSFileManager defaultManager] fileExistsAtPath:aXMLFile]) {
             NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:aXMLFile, NSFilePathErrorKey, nil];
-            *error = [TBXML errorWithCode:D_TBXML_FILE_NOT_FOUND userInfo:userInfo];
+            if(*error)
+                *error = [TBXML errorWithCode:D_TBXML_FILE_NOT_FOUND userInfo:userInfo];
         } else {
             SEL dataWithUncompressedContentsOfFile = NSSelectorFromString(@"dataWithUncompressedContentsOfFile:");
             
