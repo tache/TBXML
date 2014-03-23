@@ -15,6 +15,7 @@
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setURL:url];
 	[request setHTTPMethod:@"GET"];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     
     
 #ifndef ARC_ENABLED
