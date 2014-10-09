@@ -18,7 +18,7 @@
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     
     
-#ifndef ARC_ENABLED
+#if !__has_feature(objc_arc)
     return [request autorelease];
 #else
     return request;
@@ -44,7 +44,7 @@
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
 
-#ifndef ARC_ENABLED
+#if !__has_feature(objc_arc)
     [params release];
     return [request autorelease];
 #else
